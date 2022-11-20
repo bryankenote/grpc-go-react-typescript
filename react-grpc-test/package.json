@@ -19,7 +19,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "generate-grpc": "protoc -I=/Users/chris/playground/grpc-go/helloworld helloworld.proto --js_out=import_style=commonjs,binary:/Users/chris/playground/react-grpc-test/src/grpc --grpc-web_out=import_style=typescript,mode=grpcweb:/Users/chris/playground/react-grpc-test/src/grpc"
+    "generate-grpc": "./protoc.sh"
   },
   "eslintConfig": {
     "extends": [
