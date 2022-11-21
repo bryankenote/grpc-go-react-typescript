@@ -2,8 +2,8 @@
 cwd=$(pwd)
 parentDir="$(dirname "$cwd")"
 
-~/Downloads/protoc-3.20.3-linux-x86_64/bin/protoc \
-    -I=$parentDir/grpc-go \
-    $parentDir/grpc-go/src/go-grpc/helloworld.proto \
-    --js_out=import_style=commonjs,binary:$cwd \
-    --grpc-web_out=import_style=typescript,mode=grpcweb:$cwd
+./protoc-3.20.3/bin/protoc \
+    -I=$parentDir/grpc-service \
+    $parentDir/grpc-service/helloworld.proto \
+    --js_out=import_style=commonjs,binary:$cwd/src/protobuf \
+    --grpc-web_out=import_style=typescript,mode=grpcweb:$cwd/src/protobuf

@@ -1,4 +1,4 @@
-// source: src/go-grpc/helloworld.proto
+// source: helloworld.proto
 /**
  * @fileoverview
  * @enhanceable

@@ -1,4 +1,4 @@
-import { GreeterClient } from "../go-grpc/HelloworldServiceClientPb";
+import { GreeterClient } from "../protobuf/HelloworldServiceClientPb";
 
 // see README, grpc proxy exposes 8080 by default, and we use websockets
 // so we use this URL

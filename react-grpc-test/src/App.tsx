@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useSayHello } from "./hooks/queries/greeterService";
+import { useSayHelloAgain } from "./hooks/queries/greeterService";
 
 const App = () => {
   const [message, setMessage] = useState<string>("");
-  const { sayHello, response } = useSayHello({ message });
+  const { sayHello, response } = useSayHelloAgain({ message });
 
   const onButtonClick = async () => {
     await sayHello();

@@ -6,9 +6,9 @@ import (
 	"log"
 	"time"
 
+	pb "example.com/helloworld/src/protobuf"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	pb "google.golang.org/grpc/examples/helloworld/helloworld"
 )
 
 // unused, but an example of a go-based client

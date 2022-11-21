@@ -7,10 +7,11 @@ import (
 	"log"
 	"net"
 
-	"google.golang.org/grpc"
-	pb "google.golang.org/grpc/examples/helloworld/helloworld"
+	pb "example.com/helloworld/src/protobuf"
 
-	"go-grpc/utils"
+	"example.com/helloworld/src/utils"
+
+	"google.golang.org/grpc"
 )
 
 var (
@@ -24,6 +25,13 @@ type server struct {
 
 // SayHello implements helloworld.GreeterServer
 func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
+	log.Printf("Received: %v", in.GetName())
+	log.Printf("Returning: %v", utils.Reverse(in.GetName()))
+	return &pb.HelloReply{Message: utils.Reverse(in.GetName())}, nil
+}
+
+// SayHelloAgain implements helloworld.GreeterServer
+func (s *server) SayHelloAgain(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
 	log.Printf("Received: %v", in.GetName())
 	log.Printf("Returning: %v", utils.Reverse(in.GetName()))
 	return &pb.HelloReply{Message: utils.Reverse(in.GetName())}, nil
