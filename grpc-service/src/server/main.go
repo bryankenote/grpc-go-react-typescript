@@ -6,7 +6,7 @@ import (
 	"log"
 	"net"
 
-	helloWorldService "example.com/helloworld/src/hello_world_service"
+	greeterService "example.com/helloworld/src/greeter_service"
 	pb "example.com/helloworld/src/protobuf"
 
 	"google.golang.org/grpc"
@@ -23,7 +23,7 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	s := grpc.NewServer()
-	pb.RegisterGreeterServer(s, &helloWorldService.Server{})
+	pb.RegisterGreeterServer(s, &greeterService.Server{})
 	log.Printf("server listening at %v", lis.Addr())
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)

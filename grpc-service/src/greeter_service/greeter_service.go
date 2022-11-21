@@ -1,4 +1,4 @@
-package helloWorldService
+package greeterService
 
 import (
 	"context"
