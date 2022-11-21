@@ -1,29 +1,25 @@
+import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
-import { HelloRequest } from "../../protobuf/helloworld_pb";
+import { HelloReply, HelloRequest } from "../../protobuf/helloworld";
 import { greeterService } from "../../services/greeterService";
 import { queryKeys } from "./queryKeys";
 
-export interface ISayHelloProps {
-  message: string;
-}
-
-export const useSayHello = (props: ISayHelloProps) => {
-  const query = useQuery(
-    queryKeys.sayHello(props.message),
-    ({ queryKey }) => {
-      const request = new HelloRequest();
-      request.setName(queryKey[1]);
-      return greeterService.sayHello(request, null);
-    },
+export const useSayHello = (request: HelloRequest) => {
+  const [response, setResponse] = useState<HelloReply>();
+  const { data, refetch, ...rest } = useQuery(
+    queryKeys.sayHello(request.name),
+    ({ queryKey }) => greeterService.sayHello({ name: queryKey[1] }),
     {
       enabled: false,
     }
   );
 
-  const { data, refetch, ...rest } = query;
-  const response = {
-    message: data?.getMessage(),
-  };
+  useEffect(() => {
+    if (!data?.response) return;
+    (async () => {
+      setResponse(await data?.response);
+    })();
+  }, [data?.response]);
 
   return {
     ...rest,
@@ -32,23 +28,22 @@ export const useSayHello = (props: ISayHelloProps) => {
   };
 };
 
-export const useSayHelloAgain = (props: ISayHelloProps) => {
-  const query = useQuery(
-    queryKeys.sayHello(props.message),
-    ({ queryKey }) => {
-      const request = new HelloRequest();
-      request.setName(queryKey[1]);
-      return greeterService.sayHelloAgain(request, null);
-    },
+export const useSayHelloAgain = (request: HelloRequest) => {
+  const [response, setResponse] = useState<HelloReply>();
+  const { data, refetch, ...rest } = useQuery(
+    queryKeys.sayHello(request.name),
+    ({ queryKey }) => greeterService.sayHello({ name: queryKey[1] }),
     {
       enabled: false,
     }
   );
 
-  const { data, refetch, ...rest } = query;
-  const response = {
-    message: data?.getMessage(),
-  };
+  useEffect(() => {
+    if (!data?.response) return;
+    (async () => {
+      setResponse(await data?.response);
+    })();
+  }, [data?.response]);
 
   return {
     ...rest,

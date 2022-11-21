@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useSayHelloAgain } from "./hooks/queries/greeterService";
+import { useSayHello } from "./hooks/queries/greeterService";
 
 const App = () => {
   const [message, setMessage] = useState<string>("");
-  const { sayHello, response } = useSayHelloAgain({ message });
+  const { sayHello, response } = useSayHello({ name: message });
 
   const onButtonClick = async () => {
     await sayHello();
@@ -25,7 +25,9 @@ const App = () => {
         onChange={(event) => setMessage(event.target.value)}
       />
       <button onClick={onButtonClick}>Send message</button>
-      <p>And see the response message here: {response.message}</p>
+      <p>
+        <>And see the response message here: {response?.message}</>
+      </p>
     </>
   );
 };
